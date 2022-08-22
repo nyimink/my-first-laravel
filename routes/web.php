@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Models\Post;
 use App\Models\Banana;
+use App\Models\Fruit;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,4 +46,13 @@ Route::get('/create-banana',function () {
     ]);
     $newBanana->save();
     return $newBanana;
+});
+
+Route::get('/fruits',function () {
+    $newFruit = new Fruit([
+        'name' => 'fruit name',
+        'color' => 'fruit color'
+    ]);
+    $newFruit->save();
+    return view('testing123');
 });
