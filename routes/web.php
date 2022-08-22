@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Post;
 use App\Models\Banana;
 use App\Models\Fruit;
+use App\Models\tabemono;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,4 +56,15 @@ Route::get('/fruits',function () {
     ]);
     $newFruit->save();
     return view('testing123');
+});
+
+Route::get('/tabemonos',function () {
+    $newTabemono = new tabemono([
+        'name' => 'name',
+        'favourites' => 'love',
+        'price' => '$',
+        'flavour' => 'yummy'
+    ]);
+    $newTabemono->save();
+    return $newTabemono;
 });
