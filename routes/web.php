@@ -5,6 +5,8 @@ use App\Models\Post;
 use App\Models\Banana;
 use App\Models\Fruit;
 use App\Models\tabemono;
+use App\Models\html_form;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,10 +42,20 @@ Route::get('/testing', function () {
 
 });
 
+Route::get('/phptesting', function () {
+    return view('phpstilltest');
+
+});
+
 Route::get('/create-banana',function () {
+   
+    return view('banana/create');
+});
+
+Route::post('/create-banana',function (Request $request) {
     $newBanana = new Banana([
-        'name' => 'title 3',
-        'color' => 'detail 3'
+        'name' => $request->input("title"),
+        'color' => $request->input("color")
     ]);
     $newBanana->save();
     return $newBanana;
@@ -55,7 +67,7 @@ Route::get('/fruits',function () {
         'color' => 'fruit color'
     ]);
     $newFruit->save();
-    return view('testing123');
+    return $newFruit;
 });
 
 Route::get('/tabemonos',function () {
@@ -67,4 +79,20 @@ Route::get('/tabemonos',function () {
     ]);
     $newTabemono->save();
     return $newTabemono;
+});
+
+Route::get('/register-form',function () {
+   
+    return view('html-form/regform');
+});
+
+Route::post('/register-form',function (Request $request) {
+    $newForm = new html_form([
+        'firstName' => $request->input("firstName"),
+        'lastName' => $request->input("lastName"),
+        'email' => $request->input("email"),
+        'password' => $request->input("password")
+    ]);
+    $newForm->save();
+    return $newForm;
 });
