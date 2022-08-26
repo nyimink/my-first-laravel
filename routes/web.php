@@ -5,6 +5,8 @@ use App\Models\Post;
 use App\Models\Banana;
 use App\Models\Fruit;
 use App\Models\tabemono;
+use App\Models\html_form;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +26,11 @@ Route::get('/', function () {
 Route::get('/view-post',function () {
     echo Post::get();
     return view('testing123');
+});
+
+Route::get('/something',function () {
+    echo Post::get();
+    return view('hellotest');
 });
 
 Route::get('/create-post',function () {
@@ -67,4 +74,20 @@ Route::get('/tabemonos',function () {
     ]);
     $newTabemono->save();
     return $newTabemono;
+});
+
+Route::get('/register-form',function () {
+   
+    return view('html-form/regform');
+});
+
+Route::post('/register-form',function (Request $request) {
+    $newForm = new html_form([
+        'firstName' => $request->input("firstName"),
+        'lastName' => $request->input("lastName"),
+        'email' => $request->input("email"),
+        'password' => $request->input("password")
+    ]);
+    $newForm->save();
+    return $newForm;
 });

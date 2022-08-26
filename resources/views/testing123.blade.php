@@ -108,7 +108,7 @@
 
             echo $name;
 
-            $wow = function() use ($name) {
+            $wow = function() use ($name) {   // pass by value
                 $name = "Bob";
                 echo "Hello $name";
             };
